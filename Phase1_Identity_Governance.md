@@ -1,4 +1,4 @@
-# Phase 1: Identity & Governance (AZ-104)
+===# Phase 1: Identity & Governance (AZ-104)
 
 ## Objective
 - Create a resource group
@@ -9,9 +9,9 @@
 ## Tasks Performed
 
 ### ✅ 1. Created Resource Group
-- Name: `__________`
-- Region: __________
-- Tag: __________
+- Name: "RG-AZ104"
+- Region: "(US) East US"
+- Tag: "Project = AZ-104-Lab"
 
 ### ✅ 2. Created Azure AD Users
 - user1: __________
@@ -36,6 +36,7 @@
 - Scope: __________
 
 ## Screenshots
+1.![image](https://github.com/user-attachments/assets/f3bf3492-2f85-43d8-8d24-da6da23fb8af)
 
 ## Reflections
 - 

@@ -28,17 +28,17 @@ Both are deployed using **Standard\_B1s** for cost-efficiency.
 ## 🔐 Access and Networking Notes
 
 * I plan to apply **NSGs** later for security testing
-* Public IPs enabled temporarily for direct access during lab
+* Public IPs will be enabled temporarily for direct access during lab
 * Will later test NSG rules for locking down remote access
 
 ---
 
 ## 🧪 Early Observations
 
-* Deployment templates in Portal are straightforward
-* Creating the right inbound rules (SSH/RDP) took some reading
-* VM boot times are reasonable, around 2–3 minutes each
+* 
+* 
+* 
 
 ---
 
-Next: Documenting the network and NSG config in `nsg-and-network.md`, once both VMs are confirmed reachable and stable.
+Next: Documenting the network and NSG config in nsg-and-network.md, once both VMs are confirmed reachable and stable.

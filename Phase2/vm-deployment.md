@@ -73,7 +73,6 @@ Both are deployed using **Standard\_B1s** for cost-efficiency.
 
 ## 🧪 Early Observations
 
-## Early Observations
 
 - Initial VM sizing (B1s) proved insufficient for IIS on Windows VM, necessitating an upgrade to B2s.
 - Public IP quota limits required proactive cleanup of unused IPs before assigning new ones.

@@ -84,4 +84,6 @@ Both are deployed using **Standard\_B1s** for cost-efficiency.
 
 ---
 
-Next: Documenting the network and NSG config in nsg-and-network.md, once both VMs are confirmed reachable and stable.
+**Next steps:**  
+Both VMs are now confirmed reachable and stable. Proceeding to document network and NSG configurations in `nsg-and-network.md`.
+

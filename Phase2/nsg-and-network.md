@@ -19,7 +19,7 @@ This document details how I configured Azure networking components during Phase 
 ### Screenshots  
 | Description               | Image                              |
 |---------------------------|----------------------------------|
-| VNet and Subnet Overview  | ![Vnet-and-subnet]Screenshots/Virtualnetworkandsubnet.png) |
+| VNet and Subnet Overview  | |![Virtual Network and Subnet](screenshots/Virtualnetworkandsubnet.png) |
 
 ---
 
@@ -42,7 +42,7 @@ This document details how I configured Azure networking components during Phase 
 ### Screenshots  
 | Description              | Image                             |
 |--------------------------|---------------------------------|
-| NSG Inbound Security Rules | ![nsg-inbound-rules] Screenshots/nsg-inbound-rules.png |
+| NSG Inbound Security Rules | ![NSG Inbound Rules](screenshots/nsg-inbound-rules.png) |
 
 ---
 

@@ -9,11 +9,11 @@ This document details how I configured Azure networking components during Phase 
 | Component | Details                |
 | --------- | ---------------------- |
 | VNet Name | VNET-InfraLab          |
-| Subnets   | Subnet-LinuxLab, Subnet-WinLab |
+| Subnets   | Subnet-LinuxLab, Subnet-InfraLab |
 | Region    | East US (Windows VM), West US (Linux VM) |
 
 - Created VNets and subnets manually via the Azure Portal.
-- Assigned the Windows VM (`vm-win-east`) to `Subnet-WinLab` and the Linux VM (`vm-linux-west`) to `Subnet-LinuxLab`.
+- Assigned the Windows VM (`vm-win-east`) to `Subnet-InfraLab` and the Linux VM (`vm-linux-west`) to `Subnet-LinuxLab`.
 - Ensured subnet IP ranges and region alignments support VM deployment.
 
 ---

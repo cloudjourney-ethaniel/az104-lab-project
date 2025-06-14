@@ -1,6 +1,6 @@
 # NSG and Networking (Phase 2 Lab)
 
-This document details how I configured Azure networking components during Phase 2 of my lab, including virtual networks (VNets), subnets, and network security groups (NSGs). This simulates a junior cloud administrator role and is updated as I implement each step.
+This document details how I configured Azure networking components during Phase 2 of my lab, including virtual networks (VNets), subnets, and network security groups (NSGs). This simulates a junior cloud administrator role and is updated as I implement each step. Screenshots are provided in the main az104-lab-project repository.
 
 ---
 
@@ -15,11 +15,6 @@ This document details how I configured Azure networking components during Phase 
 - Created VNets and subnets manually via the Azure Portal.
 - Assigned the Windows VM (`vm-win-east`) to `Subnet-WinLab` and the Linux VM (`vm-linux-west`) to `Subnet-LinuxLab`.
 - Ensured subnet IP ranges and region alignments support VM deployment.
-
-### Screenshots  
-| Description               | Image                              |
-|---------------------------|----------------------------------|
-| VNet and Subnet Overview  | |![Virtual Network and Subnet](screenshots/Virtualnetworkandsubnet.png) |
 
 ---
 
@@ -37,12 +32,6 @@ This document details how I configured Azure networking components during Phase 
 
 - Default inbound traffic is denied, ensuring secure access.
 - Public IPs were temporarily enabled to facilitate access during deployment and testing.
-
-### Screenshots  
-### Screenshots  
-| Description              | Image                             |
-|--------------------------|---------------------------------|
-| NSG Inbound Security Rules | ![NSG Inbound Rules](screenshots/nsg-inbound-rules.png) |
 
 ---
 
@@ -74,4 +63,4 @@ All planned NSG and networking configurations are complete and verified for both
 ---
 
 **Next steps:**  
-Continue building out practice VM deployments until confident, then explore advanced Azure networking topics, while documenting progress in `vm-deployment.md`.
+Continue building out VM deployments, then explore advanced Azure networking topics, while documenting progress in `vm-deployment.md`.

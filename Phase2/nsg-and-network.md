@@ -19,7 +19,7 @@ This document details how I configured Azure networking components during Phase 
 ### Screenshots  
 | Description               | Image                              |
 |---------------------------|----------------------------------|
-| VNet and Subnet Overview  | ![vnet-subnet](screenshots/vnet-subnet-linuxlab.png) |
+| VNet and Subnet Overview  | ![vnet-subnet](screenshots/Virtualnetworkandsubnet.png) |
 
 ---
 

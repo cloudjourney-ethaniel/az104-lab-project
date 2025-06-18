@@ -1,0 +1,46 @@
+# 📦 Phase 3 – Storage & Backup (AZ-104 Azure Lab Project)
+
+## 🔍 Objective
+Understand and work with different Azure storage services including Blob, File Shares, Disks, 
+and Backups. Learn storage types, access methods, and implement backup strategies.
+
+---
+
+## 🛠️ Tasks Completed
+
+### 1. Azure Storage Account
+- [x] Created a **General-purpose v2** Storage Account
+- [x Compared **LRS vs GRS vs ZRS** redundancy options
+- [x Explored **Standard vs Premium** tiers
+
+### 2. Blob Storage
+- [x] Created a Blob container
+- [x] Uploaded and downloaded files
+- [x] Tested public access vs SAS token access
+- [x] Applied **lifecycle rules** to auto-delete blobs
+
+### 3. Azure Files
+- [x] Created a File Share
+- [ ] Mounted File Share to a VM (Windows or Linux)
+- [ ] Compared **SMB** and **NFS** options
+
+### 4. Managed Disks
+- [ ] Added a data disk to an existing VM
+- [ ] Resized an OS or data disk
+- [ ] Took a snapshot of a disk
+
+### 5. Backup
+- [ ] Enabled Azure Backup for a VM
+- [ ] Created and restored a backup
+- [ ] Explored Backup Vault settings
+
+### 6. Security & Cost Optimization
+- [ ] Used **SAS tokens** to share access securely
+- [ ] Enabled **soft delete** for blobs and files
+- [ ] Used **storage tiers** (Hot, Cool, Archive) for cost control
+
+---
+
+## 🧠 What I Learned
+I feel more confident about utilizing policy tags after reviewing why my storage account wouldn't create.
+

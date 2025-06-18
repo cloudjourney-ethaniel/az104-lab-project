@@ -63,4 +63,4 @@ All planned NSG and networking configurations are complete and verified for both
 ---
 
 **Next steps:**  
-Continue building out VM deployments, then explore advanced Azure networking topics, while documenting progress in `vm-deployment.md`.
+Continue building out VM deployments, proceed to Phase 3: StorageAndBackup.md

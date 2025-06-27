@@ -10,8 +10,8 @@ and Backups. Learn storage types, access methods, and implement backup strategie
 
 ### 1. Azure Storage Account
 - [x] Created a **General-purpose v2** Storage Account
-- [x Compared **LRS vs GRS vs ZRS** redundancy options
-- [x Explored **Standard vs Premium** tiers
+- [x]Compared **LRS vs GRS vs ZRS** redundancy options
+- [x]Explored **Standard vs Premium** tiers
 
 ### 2. Blob Storage
 - [x] Created a Blob container
@@ -26,13 +26,13 @@ and Backups. Learn storage types, access methods, and implement backup strategie
 
 ### 4. Managed Disks
 - [x] Added a data disk to an existing VM
-- [ ] Resized an OS or data disk
-- [ ] Took a snapshot of a disk
+- [x] Resized an OS or data disk
+- [x] Took a snapshot of a disk
 
 ### 5. Backup
-- [ ] Enabled Azure Backup for a VM
-- [ ] Created and restored a backup
-- [ ] Explored Backup Vault settings
+- [x] Enabled Azure Backup for a VM
+- [x] Created and restored a backup
+- [x] Explored Backup Vault settings
 
 ### 6. Security & Cost Optimization
 - [ ] Used **SAS tokens** to share access securely

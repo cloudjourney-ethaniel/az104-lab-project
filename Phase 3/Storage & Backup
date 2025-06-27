@@ -58,3 +58,4 @@ from scratch on demand—just like a real cloud admin—and helps me deeply reta
 - The soft delete feature is simple to enable, and adds confidence for handling production data.
 - Reinforces the habit of thinking about data protection and disaster recovery early in any setup.
 - Each time I build these settings from scratch, I get faster and more comfortable with Azure’s storage features.
+*** Next Phase ---> Phase 4: Networking

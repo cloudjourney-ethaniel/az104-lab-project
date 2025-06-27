@@ -1,0 +1,24 @@
+🌐 Phase 4: Azure Networking (In Progress)
+In this phase of my AZ-104 Lab Project, I will dive into core Azure networking concepts and hands-on skills. 
+My goal is to confidently design, deploy, and secure cloud networks using real Azure 
+resources—building on everything I’ve learned so far.
+
+What I will accomplish in Phase 4:
+
+Design and deploy Azure Virtual Networks (VNets) and subnets from scratch.
+
+Configure and test public and private IP addresses for virtual machines.
+
+Secure resources using Network Security Groups (NSGs) and custom firewall rules.
+
+Practice VNet peering and troubleshoot connectivity between networks.
+
+Apply cost optimization strategies and clean up resources after each session.
+
+What I hope to learn:
+By repeatedly setting up and breaking down these network environments, I will reinforce my understanding 
+of cloud networking—from secure connectivity to efficient troubleshooting. Each session is a fresh chance 
+to improve my skills and approach real-world Azure scenarios with confidence.
+
+Follow my progress below!
+(Check back for lab details, screenshots, and reflections as I work through each step.)

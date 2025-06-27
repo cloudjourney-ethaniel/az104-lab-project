@@ -35,9 +35,9 @@ and Backups. Learn storage types, access methods, and implement backup strategie
 - [x] Explored Backup Vault settings
 
 ### 6. Security & Cost Optimization
-- [ ] Used **SAS tokens** to share access securely
-- [ ] Enabled **soft delete** for blobs and files
-- [ ] Used **storage tiers** (Hot, Cool, Archive) for cost control
+- [x] Used **SAS tokens** to share access securely
+- [x] Enabled **soft delete** for blobs and files
+- [x] Used **storage tiers** (Hot, Cool, Archive) for cost control
 
 ---
 
@@ -53,3 +53,8 @@ from scratch on demand—just like a real cloud admin—and helps me deeply reta
 - Enabled and tested Azure Backup for a Linux VM, using cost-saving storage and policies.
 - Successfully restored a VM from backup, troubleshooting every step for deeper understanding (NSG, public IP, password resets).
 - Reinforced and deepened my Azure admin skills, now I am way more confident and efficient than before.
+- Set up soft delete for blobs and containers, adding an easy recovery layer for accidental deletes.
+- Now I understand how retention periods (ex: 7 days) give a real safety net before permanent deletion.
+- The soft delete feature is simple to enable, and adds confidence for handling production data.
+- Reinforces the habit of thinking about data protection and disaster recovery early in any setup.
+- Each time I build these settings from scratch, I get faster and more comfortable with Azure’s storage features.

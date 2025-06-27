@@ -44,6 +44,11 @@ and Backups. Learn storage types, access methods, and implement backup strategie
 ## 🧠 What I Learned
 - I feel more confident about utilizing policy tags after reviewing why my storage account wouldn't create.
 - My old $200 Azure credit expired with $179 left, so I restarted fresh on a student account.
+
+[ What this means for me: I will now intentionally delete all resources at the end of each session, forcing myself
+to practice full deployment and configuration every time. This hands-on repetition ensures I can rebuild 
+from scratch on demand—just like a real cloud admin—and helps me deeply retain each step of the Azure workflow.]
+
 - This time, I set up VM backups and Recovery Services Vaults with a cleaner, more organized approach.
 - Enabled and tested Azure Backup for a Linux VM, using cost-saving storage and policies.
 - Successfully restored a VM from backup, troubleshooting every step for deeper understanding (NSG, public IP, password resets).

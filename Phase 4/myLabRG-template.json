@@ -1,0 +1,928 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "loadBalancers_MyLabLB_public_name": {
+      "type": "String"
+    },
+    "networkInterfaces_webvm238_z2_name": {
+      "type": "String"
+    },
+    "networkInterfaces_webvm453_z2_name": {
+      "type": "String"
+    },
+    "networkSecurityGroups_webVM_nsg_name": {
+      "type": "String"
+    },
+    "publicIPAddresses_myLabLB_PIP_name": {
+      "type": "String"
+    },
+    "publicIPAddresses_webVM2_ip_name": {
+      "type": "String"
+    },
+    "publicIPAddresses_webVM_ip_name": {
+      "type": "String"
+    },
+    "sshPublicKeys_vmLabkey_name": {
+      "type": "String"
+    },
+    "sshPublicKeys_webVM2_key_name": {
+      "type": "String"
+    },
+    "virtualMachines_webVM2_name": {
+      "type": "String"
+    },
+    "virtualMachines_webVM_name": {
+      "type": "String"
+    },
+    "virtualNetworks_myLabVNet_name": {
+      "type": "String"
+    },
+    "virtualNetworks_myLabVNet_peer_name": {
+      "type": "String"
+    }
+  },
+  "resources": [
+    {
+      "apiVersion": "2024-11-01",
+      "location": "eastus",
+      "name": "[parameters('sshPublicKeys_vmLabkey_name')]",
+      "properties": {
+        "publicKey": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC3wwtYeBJYuFEog4VO3Zp27Ne+BuRabFQG3jltylFOxRgUAcAlq1TmHhIi+SoJE6cHd111NC5ULGUtPtUEEs17wueaqPBhWCHns9XFf31tRbX0jv8oFL682AeAdqHcTzM8NPN0MGczxQe6jbPNoLXNb5A83DtVqDa6OC+mEacmFLsIhYgQlVwldwnYr4YnC9QhSp2W8X+d8iOJAxpAjRJri98qHOy0BHohI5UjrKsH8s2rxpRRid1jIZW6JiY+aHI3Jt0oq6OPhxdHBZahcyqh4sJn9cuDiqb3Z/fTJHjkjDRAwFSq5YoSxWZt/MQALCtmlhAD2sLKOUrpgGjM0dc20aJSuLyylzm1NZ/JiFndh2oKTqm3aJjixZWTzybzgaQbbZl/wM112dWgeQVsAFt0BcAHGmg2LKNnhaWBuUtRwww+cIiW5cUF/AH1QVDWcA0s88xQm7z5Zo6N2ZFCuUhCyZqkrGK3L/EXc+HDSSHXY5qdyTKNdWIk5xfOlbYxSdk= generated-by-azure"
+      },
+      "type": "Microsoft.Compute/sshPublicKeys"
+    },
+    {
+      "apiVersion": "2024-11-01",
+      "location": "eastus",
+      "name": "[parameters('sshPublicKeys_webVM2_key_name')]",
+      "properties": {
+        "publicKey": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDnncnep7D8OO46QygUi4y3ELQFtp9YTAAyS/m+pGY+l6PfKk+qR7cIgXM4M+un39H+SFM0gFIwy7dv5l92P7caVyvXz+AtV5ih8h0zKzo7M/L+mPDFrCROdSXKfyOreHukswREANuIdcjicsb5F6oWrqgWKVm96k+WRRx1e/koB8dQXh+sVBLYSNRW74vUDZm6fwyGo+0mmIB+Evx4ux4mrvq0+s7kVNNJRfRn+nKlXiNXo5uyfLbxV7YfqB0+nsW9EaNu/eFqLB3JRLbtjkM0qY9CASP/w9TcowOE8dwS4xaODRAvWbs2p7sXHxEISOEq0Kc/3kG5ikifaq8fDebI6GswJ35i/IE9o3YpYQixxMKKcMHhueG0Tpr7a0OMb6d3/PyGj4zrYxQF5pAGwphEtBDaI1vGQUKz2ayKTjZTqhrxhMFls59211RuOIBYA43506fRYwdo05CP1QPYze7IaFsob4YLBR0gE7hUz1DYPUfBjNXGeSsAoyDHq1UU5dU= generated-by-azure"
+      },
+      "type": "Microsoft.Compute/sshPublicKeys"
+    },
+    {
+      "apiVersion": "2024-05-01",
+      "location": "eastus",
+      "name": "[parameters('networkSecurityGroups_webVM_nsg_name')]",
+      "properties": {
+        "securityRules": [
+          {
+            "id": "[resourceId('Microsoft.Network/networkSecurityGroups/securityRules', parameters('networkSecurityGroups_webVM_nsg_name'), 'SSH')]",
+            "name": "SSH",
+            "properties": {
+              "access": "Allow",
+              "destinationAddressPrefix": "*",
+              "destinationAddressPrefixes": [],
+              "destinationPortRange": "22",
+              "destinationPortRanges": [],
+              "direction": "Inbound",
+              "priority": 300,
+              "protocol": "TCP",
+              "sourceAddressPrefix": "*",
+              "sourceAddressPrefixes": [],
+              "sourcePortRange": "*",
+              "sourcePortRanges": []
+            },
+            "type": "Microsoft.Network/networkSecurityGroups/securityRules"
+          },
+          {
+            "id": "[resourceId('Microsoft.Network/networkSecurityGroups/securityRules', parameters('networkSecurityGroups_webVM_nsg_name'), 'HTTP')]",
+            "name": "HTTP",
+            "properties": {
+              "access": "Allow",
+              "destinationAddressPrefix": "*",
+              "destinationAddressPrefixes": [],
+              "destinationPortRange": "80",
+              "destinationPortRanges": [],
+              "direction": "Inbound",
+              "priority": 320,
+              "protocol": "TCP",
+              "sourceAddressPrefix": "*",
+              "sourceAddressPrefixes": [],
+              "sourcePortRange": "*",
+              "sourcePortRanges": []
+            },
+            "type": "Microsoft.Network/networkSecurityGroups/securityRules"
+          }
+        ]
+      },
+      "type": "Microsoft.Network/networkSecurityGroups"
+    },
+    {
+      "apiVersion": "2024-05-01",
+      "location": "eastus",
+      "name": "[parameters('publicIPAddresses_myLabLB_PIP_name')]",
+      "properties": {
+        "ddosSettings": {
+          "protectionMode": "VirtualNetworkInherited"
+        },
+        "idleTimeoutInMinutes": 4,
+        "ipAddress": "20.55.19.248",
+        "ipTags": [],
+        "publicIPAddressVersion": "IPv4",
+        "publicIPAllocationMethod": "Static"
+      },
+      "sku": {
+        "name": "Standard",
+        "tier": "Regional"
+      },
+      "type": "Microsoft.Network/publicIPAddresses",
+      "zones": [
+        "2"
+      ]
+    },
+    {
+      "apiVersion": "2024-05-01",
+      "location": "eastus",
+      "name": "[parameters('publicIPAddresses_webVM2_ip_name')]",
+      "properties": {
+        "idleTimeoutInMinutes": 4,
+        "ipAddress": "20.119.99.241",
+        "ipTags": [],
+        "publicIPAddressVersion": "IPv4",
+        "publicIPAllocationMethod": "Static"
+      },
+      "sku": {
+        "name": "Standard",
+        "tier": "Regional"
+      },
+      "type": "Microsoft.Network/publicIPAddresses",
+      "zones": [
+        "2"
+      ]
+    },
+    {
+      "apiVersion": "2024-05-01",
+      "location": "eastus",
+      "name": "[parameters('publicIPAddresses_webVM_ip_name')]",
+      "properties": {
+        "idleTimeoutInMinutes": 4,
+        "ipAddress": "172.208.28.163",
+        "ipTags": [],
+        "publicIPAddressVersion": "IPv4",
+        "publicIPAllocationMethod": "Static"
+      },
+      "sku": {
+        "name": "Standard",
+        "tier": "Regional"
+      },
+      "type": "Microsoft.Network/publicIPAddresses",
+      "zones": [
+        "2"
+      ]
+    },
+    {
+      "apiVersion": "2024-11-01",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_webvm453_z2_name'))]"
+      ],
+      "location": "eastus",
+      "name": "[parameters('virtualMachines_webVM_name')]",
+      "properties": {
+        "additionalCapabilities": {
+          "hibernationEnabled": false
+        },
+        "diagnosticsProfile": {
+          "bootDiagnostics": {
+            "enabled": true
+          }
+        },
+        "hardwareProfile": {
+          "vmSize": "Standard_B1s"
+        },
+        "networkProfile": {
+          "networkInterfaces": [
+            {
+              "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_webvm453_z2_name'))]",
+              "properties": {
+                "deleteOption": "Detach"
+              }
+            }
+          ]
+        },
+        "osProfile": {
+          "adminUsername": "azureuser",
+          "allowExtensionOperations": true,
+          "computerName": "[parameters('virtualMachines_webVM_name')]",
+          "linuxConfiguration": {
+            "disablePasswordAuthentication": true,
+            "patchSettings": {
+              "assessmentMode": "ImageDefault",
+              "patchMode": "ImageDefault"
+            },
+            "provisionVMAgent": true,
+            "ssh": {
+              "publicKeys": [
+                {
+                  "keyData": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC3wwtYeBJYuFEog4VO3Zp27Ne+BuRabFQG3jltylFOxRgUAcAlq1TmHhIi+SoJE6cHd111NC5ULGUtPtUEEs17wueaqPBhWCHns9XFf31tRbX0jv8oFL682AeAdqHcTzM8NPN0MGczxQe6jbPNoLXNb5A83DtVqDa6OC+mEacmFLsIhYgQlVwldwnYr4YnC9QhSp2W8X+d8iOJAxpAjRJri98qHOy0BHohI5UjrKsH8s2rxpRRid1jIZW6JiY+aHI3Jt0oq6OPhxdHBZahcyqh4sJn9cuDiqb3Z/fTJHjkjDRAwFSq5YoSxWZt/MQALCtmlhAD2sLKOUrpgGjM0dc20aJSuLyylzm1NZ/JiFndh2oKTqm3aJjixZWTzybzgaQbbZl/wM112dWgeQVsAFt0BcAHGmg2LKNnhaWBuUtRwww+cIiW5cUF/AH1QVDWcA0s88xQm7z5Zo6N2ZFCuUhCyZqkrGK3L/EXc+HDSSHXY5qdyTKNdWIk5xfOlbYxSdk= generated-by-azure",
+                  "path": "/home/azureuser/.ssh/authorized_keys"
+                }
+              ]
+            }
+          },
+          "requireGuestProvisionSignal": true,
+          "secrets": []
+        },
+        "securityProfile": {
+          "securityType": "TrustedLaunch",
+          "uefiSettings": {
+            "secureBootEnabled": true,
+            "vTpmEnabled": true
+          }
+        },
+        "storageProfile": {
+          "dataDisks": [],
+          "diskControllerType": "SCSI",
+          "imageReference": {
+            "offer": "ubuntu-24_04-lts",
+            "publisher": "canonical",
+            "sku": "server",
+            "version": "latest"
+          },
+          "osDisk": {
+            "caching": "ReadWrite",
+            "createOption": "FromImage",
+            "deleteOption": "Delete",
+            "diskSizeGB": 30,
+            "managedDisk": {
+              "id": "[resourceId('Microsoft.Compute/disks', concat(parameters('virtualMachines_webVM_name'), '_OsDisk_1_b7cad9f8fa6f45fc9c05a75129f9a1d6'))]",
+              "storageAccountType": "Standard_LRS"
+            },
+            "name": "[concat(parameters('virtualMachines_webVM_name'), '_OsDisk_1_b7cad9f8fa6f45fc9c05a75129f9a1d6')]",
+            "osType": "Linux"
+          }
+        }
+      },
+      "type": "Microsoft.Compute/virtualMachines",
+      "zones": [
+        "2"
+      ]
+    },
+    {
+      "apiVersion": "2024-11-01",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_webvm238_z2_name'))]"
+      ],
+      "location": "eastus",
+      "name": "[parameters('virtualMachines_webVM2_name')]",
+      "properties": {
+        "additionalCapabilities": {
+          "hibernationEnabled": false
+        },
+        "diagnosticsProfile": {
+          "bootDiagnostics": {
+            "enabled": true
+          }
+        },
+        "hardwareProfile": {
+          "vmSize": "Standard_B1s"
+        },
+        "networkProfile": {
+          "networkInterfaces": [
+            {
+              "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_webvm238_z2_name'))]",
+              "properties": {
+                "deleteOption": "Detach"
+              }
+            }
+          ]
+        },
+        "osProfile": {
+          "adminUsername": "azureuser",
+          "allowExtensionOperations": true,
+          "computerName": "[parameters('virtualMachines_webVM2_name')]",
+          "linuxConfiguration": {
+            "disablePasswordAuthentication": true,
+            "patchSettings": {
+              "assessmentMode": "ImageDefault",
+              "patchMode": "ImageDefault"
+            },
+            "provisionVMAgent": true,
+            "ssh": {
+              "publicKeys": [
+                {
+                  "keyData": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDnncnep7D8OO46QygUi4y3ELQFtp9YTAAyS/m+pGY+l6PfKk+qR7cIgXM4M+un39H+SFM0gFIwy7dv5l92P7caVyvXz+AtV5ih8h0zKzo7M/L+mPDFrCROdSXKfyOreHukswREANuIdcjicsb5F6oWrqgWKVm96k+WRRx1e/koB8dQXh+sVBLYSNRW74vUDZm6fwyGo+0mmIB+Evx4ux4mrvq0+s7kVNNJRfRn+nKlXiNXo5uyfLbxV7YfqB0+nsW9EaNu/eFqLB3JRLbtjkM0qY9CASP/w9TcowOE8dwS4xaODRAvWbs2p7sXHxEISOEq0Kc/3kG5ikifaq8fDebI6GswJ35i/IE9o3YpYQixxMKKcMHhueG0Tpr7a0OMb6d3/PyGj4zrYxQF5pAGwphEtBDaI1vGQUKz2ayKTjZTqhrxhMFls59211RuOIBYA43506fRYwdo05CP1QPYze7IaFsob4YLBR0gE7hUz1DYPUfBjNXGeSsAoyDHq1UU5dU= generated-by-azure",
+                  "path": "/home/azureuser/.ssh/authorized_keys"
+                }
+              ]
+            }
+          },
+          "requireGuestProvisionSignal": true,
+          "secrets": []
+        },
+        "securityProfile": {
+          "securityType": "TrustedLaunch",
+          "uefiSettings": {
+            "secureBootEnabled": true,
+            "vTpmEnabled": true
+          }
+        },
+        "storageProfile": {
+          "dataDisks": [],
+          "diskControllerType": "SCSI",
+          "imageReference": {
+            "offer": "ubuntu-24_04-lts",
+            "publisher": "canonical",
+            "sku": "server",
+            "version": "latest"
+          },
+          "osDisk": {
+            "caching": "ReadWrite",
+            "createOption": "FromImage",
+            "deleteOption": "Delete",
+            "diskSizeGB": 30,
+            "managedDisk": {
+              "id": "[resourceId('Microsoft.Compute/disks', concat(parameters('virtualMachines_webVM2_name'), '_disk1_10abfc500bfd47d2ad1d1da3c0a653e2'))]",
+              "storageAccountType": "Premium_LRS"
+            },
+            "name": "[concat(parameters('virtualMachines_webVM2_name'), '_disk1_10abfc500bfd47d2ad1d1da3c0a653e2')]",
+            "osType": "Linux"
+          }
+        }
+      },
+      "type": "Microsoft.Compute/virtualMachines",
+      "zones": [
+        "2"
+      ]
+    },
+    {
+      "apiVersion": "2024-05-01",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_myLabLB_PIP_name'))]"
+      ],
+      "location": "eastus",
+      "name": "[parameters('loadBalancers_MyLabLB_public_name')]",
+      "properties": {
+        "backendAddressPools": [
+          {
+            "id": "[resourceId('Microsoft.Network/loadBalancers/backendAddressPools', parameters('loadBalancers_MyLabLB_public_name'), 'BEPool2')]",
+            "name": "BEPool2",
+            "properties": {
+              "loadBalancerBackendAddresses": [
+                {
+                  "name": "myLabRG_webvm238_z2ipconfig1",
+                  "properties": {}
+                },
+                {
+                  "name": "myLabRG_webvm453_z2ipconfig1",
+                  "properties": {}
+                }
+              ]
+            }
+          }
+        ],
+        "frontendIPConfigurations": [
+          {
+            "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_MyLabLB_public_name')), '/frontendIPConfigurations/myLabLB-PIP')]",
+            "name": "myLabLB-PIP",
+            "properties": {
+              "privateIPAllocationMethod": "Dynamic",
+              "publicIPAddress": {
+                "id": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_myLabLB_PIP_name'))]"
+              }
+            }
+          }
+        ],
+        "inboundNatPools": [],
+        "inboundNatRules": [],
+        "loadBalancingRules": [
+          {
+            "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_MyLabLB_public_name')), '/loadBalancingRules/HTTP-Rule')]",
+            "name": "HTTP-Rule",
+            "properties": {
+              "backendAddressPool": {
+                "id": "[resourceId('Microsoft.Network/loadBalancers/backendAddressPools', parameters('loadBalancers_MyLabLB_public_name'), 'BEPool2')]"
+              },
+              "backendAddressPools": [
+                {
+                  "id": "[resourceId('Microsoft.Network/loadBalancers/backendAddressPools', parameters('loadBalancers_MyLabLB_public_name'), 'BEPool2')]"
+                }
+              ],
+              "backendPort": 80,
+              "disableOutboundSnat": true,
+              "enableFloatingIP": false,
+              "enableTcpReset": false,
+              "frontendIPConfiguration": {
+                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_MyLabLB_public_name')), '/frontendIPConfigurations/myLabLB-PIP')]"
+              },
+              "frontendPort": 80,
+              "idleTimeoutInMinutes": 4,
+              "loadDistribution": "Default",
+              "probe": {
+                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_MyLabLB_public_name')), '/probes/HTTP-Probe')]"
+              },
+              "protocol": "Tcp"
+            }
+          }
+        ],
+        "outboundRules": [],
+        "probes": [
+          {
+            "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_MyLabLB_public_name')), '/probes/HTTP-Probe')]",
+            "name": "HTTP-Probe",
+            "properties": {
+              "intervalInSeconds": 5,
+              "noHealthyBackendsBehavior": "AllProbedDown",
+              "numberOfProbes": 1,
+              "port": 80,
+              "probeThreshold": 1,
+              "protocol": "Http",
+              "requestPath": "/index.html"
+            }
+          }
+        ]
+      },
+      "sku": {
+        "name": "Standard",
+        "tier": "Regional"
+      },
+      "type": "Microsoft.Network/loadBalancers"
+    },
+    {
+      "apiVersion": "2024-05-01",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_MyLabLB_public_name'))]"
+      ],
+      "name": "[concat(parameters('loadBalancers_MyLabLB_public_name'), '/BEPool2')]",
+      "properties": {
+        "loadBalancerBackendAddresses": [
+          {
+            "name": "myLabRG_webvm238_z2ipconfig1",
+            "properties": {}
+          },
+          {
+            "name": "myLabRG_webvm453_z2ipconfig1",
+            "properties": {}
+          }
+        ]
+      },
+      "type": "Microsoft.Network/loadBalancers/backendAddressPools"
+    },
+    {
+      "apiVersion": "2024-05-01",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_webVM_nsg_name'))]"
+      ],
+      "name": "[concat(parameters('networkSecurityGroups_webVM_nsg_name'), '/HTTP')]",
+      "properties": {
+        "access": "Allow",
+        "destinationAddressPrefix": "*",
+        "destinationAddressPrefixes": [],
+        "destinationPortRange": "80",
+        "destinationPortRanges": [],
+        "direction": "Inbound",
+        "priority": 320,
+        "protocol": "TCP",
+        "sourceAddressPrefix": "*",
+        "sourceAddressPrefixes": [],
+        "sourcePortRange": "*",
+        "sourcePortRanges": []
+      },
+      "type": "Microsoft.Network/networkSecurityGroups/securityRules"
+    },
+    {
+      "apiVersion": "2024-05-01",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_webVM_nsg_name'))]"
+      ],
+      "name": "[concat(parameters('networkSecurityGroups_webVM_nsg_name'), '/SSH')]",
+      "properties": {
+        "access": "Allow",
+        "destinationAddressPrefix": "*",
+        "destinationAddressPrefixes": [],
+        "destinationPortRange": "22",
+        "destinationPortRanges": [],
+        "direction": "Inbound",
+        "priority": 300,
+        "protocol": "TCP",
+        "sourceAddressPrefix": "*",
+        "sourceAddressPrefixes": [],
+        "sourcePortRange": "*",
+        "sourcePortRanges": []
+      },
+      "type": "Microsoft.Network/networkSecurityGroups/securityRules"
+    },
+    {
+      "apiVersion": "2024-05-01",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_myLabVNet_peer_name'))]"
+      ],
+      "location": "eastus",
+      "name": "[parameters('virtualNetworks_myLabVNet_name')]",
+      "properties": {
+        "addressSpace": {
+          "addressPrefixes": [
+            "10.0.0.0/16"
+          ]
+        },
+        "enableDdosProtection": false,
+        "encryption": {
+          "enabled": false,
+          "enforcement": "AllowUnencrypted"
+        },
+        "privateEndpointVNetPolicies": "Disabled",
+        "subnets": [
+          {
+            "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_myLabVNet_name'), 'web-subnet')]",
+            "name": "web-subnet",
+            "properties": {
+              "addressPrefixes": [
+                "10.0.1.0/24"
+              ],
+              "delegations": [],
+              "privateEndpointNetworkPolicies": "Disabled",
+              "privateLinkServiceNetworkPolicies": "Enabled",
+              "serviceEndpoints": []
+            },
+            "type": "Microsoft.Network/virtualNetworks/subnets"
+          },
+          {
+            "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_myLabVNet_name'), 'app-subnet')]",
+            "name": "app-subnet",
+            "properties": {
+              "addressPrefixes": [
+                "10.0.2.0/24"
+              ],
+              "delegations": [],
+              "privateEndpointNetworkPolicies": "Disabled",
+              "privateLinkServiceNetworkPolicies": "Enabled",
+              "serviceEndpoints": [
+                {
+                  "locations": [
+                    "eastus",
+                    "westus",
+                    "westus3"
+                  ],
+                  "service": "Microsoft.Storage"
+                }
+              ]
+            },
+            "type": "Microsoft.Network/virtualNetworks/subnets"
+          },
+          {
+            "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_myLabVNet_name'), 'db-subnet')]",
+            "name": "db-subnet",
+            "properties": {
+              "addressPrefixes": [
+                "10.0.0.0/24"
+              ],
+              "delegations": [],
+              "privateEndpointNetworkPolicies": "Disabled",
+              "privateLinkServiceNetworkPolicies": "Enabled",
+              "serviceEndpoints": []
+            },
+            "type": "Microsoft.Network/virtualNetworks/subnets"
+          }
+        ],
+        "virtualNetworkPeerings": [
+          {
+            "id": "[resourceId('Microsoft.Network/virtualNetworks/virtualNetworkPeerings', parameters('virtualNetworks_myLabVNet_name'), 'peer-to-main')]",
+            "name": "peer-to-main",
+            "properties": {
+              "allowForwardedTraffic": false,
+              "allowGatewayTransit": false,
+              "allowVirtualNetworkAccess": true,
+              "doNotVerifyRemoteGateways": false,
+              "peerCompleteVnets": true,
+              "peeringState": "Connected",
+              "peeringSyncLevel": "FullyInSync",
+              "remoteAddressSpace": {
+                "addressPrefixes": [
+                  "10.2.0.0/16"
+                ]
+              },
+              "remoteVirtualNetwork": {
+                "id": "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_myLabVNet_peer_name'))]"
+              },
+              "remoteVirtualNetworkAddressSpace": {
+                "addressPrefixes": [
+                  "10.2.0.0/16"
+                ]
+              },
+              "useRemoteGateways": false
+            },
+            "type": "Microsoft.Network/virtualNetworks/virtualNetworkPeerings"
+          }
+        ]
+      },
+      "type": "Microsoft.Network/virtualNetworks"
+    },
+    {
+      "apiVersion": "2024-05-01",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_myLabVNet_name'))]"
+      ],
+      "location": "eastus",
+      "name": "[parameters('virtualNetworks_myLabVNet_peer_name')]",
+      "properties": {
+        "addressSpace": {
+          "addressPrefixes": [
+            "10.2.0.0/16"
+          ]
+        },
+        "enableDdosProtection": false,
+        "encryption": {
+          "enabled": false,
+          "enforcement": "AllowUnencrypted"
+        },
+        "privateEndpointVNetPolicies": "Disabled",
+        "subnets": [
+          {
+            "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_myLabVNet_peer_name'), 'default')]",
+            "name": "default",
+            "properties": {
+              "addressPrefixes": [
+                "10.2.0.0/16"
+              ],
+              "delegations": [],
+              "privateEndpointNetworkPolicies": "Disabled",
+              "privateLinkServiceNetworkPolicies": "Enabled"
+            },
+            "type": "Microsoft.Network/virtualNetworks/subnets"
+          }
+        ],
+        "virtualNetworkPeerings": [
+          {
+            "id": "[resourceId('Microsoft.Network/virtualNetworks/virtualNetworkPeerings', parameters('virtualNetworks_myLabVNet_peer_name'), 'peer-to-main')]",
+            "name": "peer-to-main",
+            "properties": {
+              "allowForwardedTraffic": false,
+              "allowGatewayTransit": false,
+              "allowVirtualNetworkAccess": true,
+              "doNotVerifyRemoteGateways": false,
+              "peerCompleteVnets": true,
+              "peeringState": "Connected",
+              "peeringSyncLevel": "FullyInSync",
+              "remoteAddressSpace": {
+                "addressPrefixes": [
+                  "10.0.0.0/16"
+                ]
+              },
+              "remoteVirtualNetwork": {
+                "id": "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_myLabVNet_name'))]"
+              },
+              "remoteVirtualNetworkAddressSpace": {
+                "addressPrefixes": [
+                  "10.0.0.0/16"
+                ]
+              },
+              "useRemoteGateways": false
+            },
+            "type": "Microsoft.Network/virtualNetworks/virtualNetworkPeerings"
+          }
+        ]
+      },
+      "type": "Microsoft.Network/virtualNetworks"
+    },
+    {
+      "apiVersion": "2024-05-01",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_myLabVNet_name'))]"
+      ],
+      "name": "[concat(parameters('virtualNetworks_myLabVNet_name'), '/app-subnet')]",
+      "properties": {
+        "addressPrefixes": [
+          "10.0.2.0/24"
+        ],
+        "delegations": [],
+        "privateEndpointNetworkPolicies": "Disabled",
+        "privateLinkServiceNetworkPolicies": "Enabled",
+        "serviceEndpoints": [
+          {
+            "locations": [
+              "eastus",
+              "westus",
+              "westus3"
+            ],
+            "service": "Microsoft.Storage"
+          }
+        ]
+      },
+      "type": "Microsoft.Network/virtualNetworks/subnets"
+    },
+    {
+      "apiVersion": "2024-05-01",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_myLabVNet_name'))]"
+      ],
+      "name": "[concat(parameters('virtualNetworks_myLabVNet_name'), '/db-subnet')]",
+      "properties": {
+        "addressPrefixes": [
+          "10.0.0.0/24"
+        ],
+        "delegations": [],
+        "privateEndpointNetworkPolicies": "Disabled",
+        "privateLinkServiceNetworkPolicies": "Enabled",
+        "serviceEndpoints": []
+      },
+      "type": "Microsoft.Network/virtualNetworks/subnets"
+    },
+    {
+      "apiVersion": "2024-05-01",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_myLabVNet_peer_name'))]"
+      ],
+      "name": "[concat(parameters('virtualNetworks_myLabVNet_peer_name'), '/default')]",
+      "properties": {
+        "addressPrefixes": [
+          "10.2.0.0/16"
+        ],
+        "delegations": [],
+        "privateEndpointNetworkPolicies": "Disabled",
+        "privateLinkServiceNetworkPolicies": "Enabled"
+      },
+      "type": "Microsoft.Network/virtualNetworks/subnets"
+    },
+    {
+      "apiVersion": "2024-05-01",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_myLabVNet_name'))]"
+      ],
+      "name": "[concat(parameters('virtualNetworks_myLabVNet_name'), '/web-subnet')]",
+      "properties": {
+        "addressPrefixes": [
+          "10.0.1.0/24"
+        ],
+        "delegations": [],
+        "privateEndpointNetworkPolicies": "Disabled",
+        "privateLinkServiceNetworkPolicies": "Enabled",
+        "serviceEndpoints": []
+      },
+      "type": "Microsoft.Network/virtualNetworks/subnets"
+    },
+    {
+      "apiVersion": "2024-05-01",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_myLabVNet_name'))]",
+        "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_myLabVNet_peer_name'))]"
+      ],
+      "name": "[concat(parameters('virtualNetworks_myLabVNet_name'), '/peer-to-main')]",
+      "properties": {
+        "allowForwardedTraffic": false,
+        "allowGatewayTransit": false,
+        "allowVirtualNetworkAccess": true,
+        "doNotVerifyRemoteGateways": false,
+        "peerCompleteVnets": true,
+        "peeringState": "Connected",
+        "peeringSyncLevel": "FullyInSync",
+        "remoteAddressSpace": {
+          "addressPrefixes": [
+            "10.2.0.0/16"
+          ]
+        },
+        "remoteVirtualNetwork": {
+          "id": "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_myLabVNet_peer_name'))]"
+        },
+        "remoteVirtualNetworkAddressSpace": {
+          "addressPrefixes": [
+            "10.2.0.0/16"
+          ]
+        },
+        "useRemoteGateways": false
+      },
+      "type": "Microsoft.Network/virtualNetworks/virtualNetworkPeerings"
+    },
+    {
+      "apiVersion": "2024-05-01",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_myLabVNet_peer_name'))]",
+        "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_myLabVNet_name'))]"
+      ],
+      "name": "[concat(parameters('virtualNetworks_myLabVNet_peer_name'), '/peer-to-main')]",
+      "properties": {
+        "allowForwardedTraffic": false,
+        "allowGatewayTransit": false,
+        "allowVirtualNetworkAccess": true,
+        "doNotVerifyRemoteGateways": false,
+        "peerCompleteVnets": true,
+        "peeringState": "Connected",
+        "peeringSyncLevel": "FullyInSync",
+        "remoteAddressSpace": {
+          "addressPrefixes": [
+            "10.0.0.0/16"
+          ]
+        },
+        "remoteVirtualNetwork": {
+          "id": "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_myLabVNet_name'))]"
+        },
+        "remoteVirtualNetworkAddressSpace": {
+          "addressPrefixes": [
+            "10.0.0.0/16"
+          ]
+        },
+        "useRemoteGateways": false
+      },
+      "type": "Microsoft.Network/virtualNetworks/virtualNetworkPeerings"
+    },
+    {
+      "apiVersion": "2024-05-01",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_webVM2_ip_name'))]",
+        "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_myLabVNet_name'), 'web-subnet')]",
+        "[resourceId('Microsoft.Network/loadBalancers/backendAddressPools', parameters('loadBalancers_MyLabLB_public_name'), 'BEPool2')]",
+        "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_webVM_nsg_name'))]"
+      ],
+      "kind": "Regular",
+      "location": "eastus",
+      "name": "[parameters('networkInterfaces_webvm238_z2_name')]",
+      "properties": {
+        "auxiliaryMode": "None",
+        "auxiliarySku": "None",
+        "disableTcpStateTracking": false,
+        "dnsSettings": {
+          "dnsServers": []
+        },
+        "enableAcceleratedNetworking": false,
+        "enableIPForwarding": false,
+        "ipConfigurations": [
+          {
+            "id": "[concat(resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_webvm238_z2_name')), '/ipConfigurations/ipconfig1')]",
+            "name": "ipconfig1",
+            "properties": {
+              "loadBalancerBackendAddressPools": [
+                {
+                  "id": "[resourceId('Microsoft.Network/loadBalancers/backendAddressPools', parameters('loadBalancers_MyLabLB_public_name'), 'BEPool2')]"
+                }
+              ],
+              "primary": true,
+              "privateIPAddress": "10.0.1.5",
+              "privateIPAddressVersion": "IPv4",
+              "privateIPAllocationMethod": "Dynamic",
+              "publicIPAddress": {
+                "id": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_webVM2_ip_name'))]",
+                "properties": {
+                  "deleteOption": "Detach"
+                }
+              },
+              "subnet": {
+                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_myLabVNet_name'), 'web-subnet')]"
+              }
+            },
+            "type": "Microsoft.Network/networkInterfaces/ipConfigurations"
+          }
+        ],
+        "networkSecurityGroup": {
+          "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_webVM_nsg_name'))]"
+        },
+        "nicType": "Standard"
+      },
+      "type": "Microsoft.Network/networkInterfaces"
+    },
+    {
+      "apiVersion": "2024-05-01",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_webVM_ip_name'))]",
+        "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_myLabVNet_name'), 'web-subnet')]",
+        "[resourceId('Microsoft.Network/loadBalancers/backendAddressPools', parameters('loadBalancers_MyLabLB_public_name'), 'BEPool2')]",
+        "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_webVM_nsg_name'))]"
+      ],
+      "kind": "Regular",
+      "location": "eastus",
+      "name": "[parameters('networkInterfaces_webvm453_z2_name')]",
+      "properties": {
+        "auxiliaryMode": "None",
+        "auxiliarySku": "None",
+        "disableTcpStateTracking": false,
+        "dnsSettings": {
+          "dnsServers": []
+        },
+        "enableAcceleratedNetworking": false,
+        "enableIPForwarding": false,
+        "ipConfigurations": [
+          {
+            "id": "[concat(resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_webvm453_z2_name')), '/ipConfigurations/ipconfig1')]",
+            "name": "ipconfig1",
+            "properties": {
+              "loadBalancerBackendAddressPools": [
+                {
+                  "id": "[resourceId('Microsoft.Network/loadBalancers/backendAddressPools', parameters('loadBalancers_MyLabLB_public_name'), 'BEPool2')]"
+                }
+              ],
+              "primary": true,
+              "privateIPAddress": "10.0.1.4",
+              "privateIPAddressVersion": "IPv4",
+              "privateIPAllocationMethod": "Dynamic",
+              "publicIPAddress": {
+                "id": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_webVM_ip_name'))]",
+                "properties": {
+                  "deleteOption": "Detach"
+                }
+              },
+              "subnet": {
+                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_myLabVNet_name'), 'web-subnet')]"
+              }
+            },
+            "type": "Microsoft.Network/networkInterfaces/ipConfigurations"
+          }
+        ],
+        "networkSecurityGroup": {
+          "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_webVM_nsg_name'))]"
+        },
+        "nicType": "Standard"
+      },
+      "type": "Microsoft.Network/networkInterfaces"
+    }
+  ],
+  "variables": {}
+}

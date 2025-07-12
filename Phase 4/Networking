@@ -1,40 +1,47 @@
 # 🌐 Phase 4 – Networking (AZ-104 Azure Lab Project)
 
 ## 📡 Objective
-Understand and deploy Azure networking resources, including VNets, subnets, Network Security Groups (NSGs), IP addressing, and connectivity scenarios. Practice securing, troubleshooting, and optimizing cloud network infrastructure.
+Understand and deploy Azure networking resources, including VNets, subnets, Network Security Groups (NSGs), 
+IP addressing, and connectivity scenarios in greater depth than previously conducted practice in Phase 2.
+Additionally; Practice securing, troubleshooting, and optimizing cloud network infrastructure.resoru
 
 ---
 
 ## 🛠️ Tasks Completed
 
 ### 1. Virtual Network (VNet) & Subnets
-- [ ] Created a **Virtual Network** (VNet) with custom address space
-- [ ] Added and configured multiple **subnets**
+- [x] Created a **Virtual Network** (VNet) with custom address space
+- [x] Added and configured multiple **subnets**
 
 ### 2. Deploying and Connecting VMs
-- [ ] Deployed a **Virtual Machine** inside the VNet
-- [ ] Assigned **public** and **private** IP addresses
-- [ ] Connected to VM using **SSH/RDP**
+- [x] Deployed a **Virtual Machine** inside the VNet
+- [x] Assigned **public** and **private** IP addresses
+- [x] Connected to VM using **SSH/RDP**
 
 ### 3. Network Security Groups (NSGs)
-- [ ] Created and attached an **NSG** to subnet and/or VM NIC
-- [ ] Configured **inbound/outbound** security rules
-- [ ] Tested rule enforcement and troubleshooting connectivity
+- [x] Created and attached an **NSG** to subnet and/or VM NIC
+- [x] Configured **inbound/outbound** security rules
+- [x] Tested rule enforcement and troubleshooting connectivity
 
 ### 4. VNet Peering & Service Endpoints
-- [ ] Configured **VNet Peering** (same or cross-region)
-- [ ] Verified traffic flow between VNets
-- [ ] Set up **Service Endpoints** (optional/stretch)
+- [x] Configured **VNet Peering** (same or cross-region)
+- [x] Verified traffic flow between VNets
+- [x] Set up **Service Endpoints** (optional/stretch)
 
 ### 5. Load Balancer & Public IP (Optional/Stretch)
-- [ ] Created an **Azure Load Balancer**
-- [ ] Assigned backend pool and health probe
-- [ ] Tested load-balanced access
+- [x] Created an **Azure Load Balancer**
+- [x] Assigned backend pool and health probe
+- [x] Tested load-balanced access
 
 ### 6. Cost Optimization & Cleanup
-- [ ] Identified cost drivers (public IPs, NSGs, VM runtime)
-- [ ] **Deleted all resources** at end of session to minimize spend
+- [x] Identified cost drivers (public IPs, NSGs, VM runtime)
+- [x] **Deleted all resources** at end of session to minimize spend
 
 ---
 
 ## 🎓 What I Learned
+I learned how to place SSH private key into .ssh/ folder for easy shell access, then I learned
+how to make a clean config file that enables access to any VM by typing ssh followed by the vm name.
+I also learned to make a round robin of nginx pages with custom messages through load balancer peering.
+I used CLI to backup my Resource Group as an ARM template.
+^ The value of Infrastructure-as-Code: a snapshot export today becomes my rollback and pipeline blueprint tomorrow.

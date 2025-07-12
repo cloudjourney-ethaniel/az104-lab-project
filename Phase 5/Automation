@@ -1,0 +1,20 @@
+## Phase 5 Checklist
+
+- [ ] Scaffold `automation/` folder with `bicep/` and `modules/` subfolders  
+- [ ] Write `main.bicep` that references:
+  - `network.bicep`
+  - `security.bicep`
+  - `compute.bicep`
+  - `loadbalancer.bicep`
+- [ ] Create `.github/workflows/phase5-deploy.yml`:
+  - Azure login via `AZURE_CREDENTIALS`
+  - `az bicep build` → `az deployment group create`
+  - Smoke test: `curl http://<LB-public-IP>/`
+- [ ] Create `.github/workflows/phase5-cleanup.yml`:
+  - Scheduled weekly + manual dispatch
+  - `az group delete --name myLabRG --yes --no-wait`
+- [ ] Add Deploy + Cleanup status badges to `phase5/README.md`  
+- [ ] Push to `main` and confirm:
+  - ✅ Deploy job completes & resources appear  
+  - ✅ `curl` returns “Hello from webVM!” or “webVM2!”  
+- [ ] Trigger or wait on Cleanup and confirm all resources are deleted  

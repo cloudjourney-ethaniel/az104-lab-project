@@ -1,1 +1,13 @@
+# Phase 5 – Automation
+
+I’ve scripted my AZ-104 lab so a single Git push builds my VNet, VMs, NSGs and Load Balancer (with health checks),
+then a scheduled job tears it all down.
+
+- **IaC:** `main.bicep` + modules for network, security, compute, LB  
+- **CI:** on-push deploy + smoke-test, scheduled cleanup  
+- **Quick verify:** `curl http://<LB-public-IP>/` returns “Hello from webVM!”  
+
+That’s it, fully repeatable & cost-controlled, and concludes my foundation to begin my Azure help-desk sprint. 
+On to Ticketing Systems and AZ-900 certification next, after real experience in help desk I'll 
+let the AZ104 exam have my best shot!
 
